@@ -3,6 +3,13 @@ export class IntegerClosedRange {
     upper: number;
 
     constructor(lower: number, upper: number) {
+        if (Number.isInteger(lower) === false) {
+            throw new Error("lower must be integer");
+        }
+        if (Number.isInteger(upper) === false) {
+            throw new Error("upper must be integer");
+        }
+
         if (lower > upper) {
             throw new Error("upper must be bigger than lower");
         }

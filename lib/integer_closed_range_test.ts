@@ -9,6 +9,7 @@ describe("整数閉区間オブジェクトのテスト", () => {
                 expect(integerClosedRange).toBeInstanceOf(IntegerClosedRange);
             });
         });
+
         describe("下端点が上端点と等しい時", () => {
             it("オプジェクトを生成できる", () => {
                 const integerClosedRange = new IntegerClosedRange(3, 3);
@@ -16,12 +17,26 @@ describe("整数閉区間オブジェクトのテスト", () => {
                 expect(integerClosedRange).toBeInstanceOf(IntegerClosedRange);
             });
         });
+
         describe("下端点が上端点より大きい時", () => {
             it("オプジェクトを生成できずErrorとなる", () => {
                 expect(() => new IntegerClosedRange(8, 3)).toThrow(Error);
             });
         });
+
+        describe("下端点のみが小数である時", () => {
+            it("オブジェクトを生成できずErrorとなる", () => {
+                expect(() => new IntegerClosedRange(3.3, 8)).toThrow(Error);
+            });
+        });
+
+        describe("上端点のみが小数である時", () => {
+            it("オブジェクトを生成できずErrorとなる", () => {
+                expect(() => new IntegerClosedRange(3, 8.8)).toThrow(Error);
+            });
+        });
     });
+
     describe("下端点と上端点の文字列表現を返す", () => {
         it("下端点が3、上端点が8のとき文字列`[3, 8]`を返す", () => {
             const integerClosedRange = new IntegerClosedRange(3, 8);
