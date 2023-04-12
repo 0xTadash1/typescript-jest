@@ -46,35 +46,62 @@ describe("整数閉区間オブジェクトのテスト", () => {
     });
 
     describe("整数が閉区間に含まれるかどうか判定する", () => {
-        describe("整数が下端点より小さく、隣接している時", () => {
-            it("下端点が3、上端点が8の時、整数2は閉区間に含まれない", () => {
-                const integerClosedRange = new IntegerClosedRange(3, 8);
+        describe("下端点より上端点が大きい時", () => {
+            describe("整数が下端点より小さく、隣接している時", () => {
+                it("下端点が3、上端点が8の時、整数2は閉区間に含まれない", () => {
+                    const integerClosedRange = new IntegerClosedRange(3, 8);
 
-                expect(integerClosedRange.contains(2)).toBe(false);
+                    expect(integerClosedRange.contains(2)).toBe(false);
+                });
+            });
+
+            describe("整数が下端点と等しい時", () => {
+                it("下端点が3、上端点が8の時、整数3は閉区間に含まれる", () => {
+                    const integerClosedRange = new IntegerClosedRange(3, 8);
+
+                    expect(integerClosedRange.contains(3)).toBe(true);
+                });
+            });
+
+            describe("整数が上端点と等しい時", () => {
+                it("下端点が3、上端点が8の時、整数8は閉区間に含まれる", () => {
+                    const integerClosedRange = new IntegerClosedRange(3, 8);
+
+                    expect(integerClosedRange.contains(8)).toBe(true);
+                });
+            });
+
+            describe("整数が上端点より大きく、隣接している時", () => {
+                it("下端点が3、上端点が8の時、整数9は閉区間に含まれない", () => {
+                    const integerClosedRange = new IntegerClosedRange(3, 8);
+
+                    expect(integerClosedRange.contains(9)).toBe(false);
+                });
             });
         });
+        describe("下端点と上端点が等しい時", () => {
+            describe("整数が両端点より小さく、隣接している時", () => {
+                it("両端点が5の時、整数4は閉区間に含まれない", () => {
+                    const integerClosedRange = new IntegerClosedRange(5, 5);
 
-        describe("整数が下端点と等しい時", () => {
-            it("下端点が3、上端点が8の時、整数3は閉区間に含まれる", () => {
-                const integerClosedRange = new IntegerClosedRange(3, 8);
-
-                expect(integerClosedRange.contains(3)).toBe(true);
+                    expect(integerClosedRange.contains(4)).toBe(false);
+                });
             });
-        });
 
-        describe("整数が上端点と等しい時", () => {
-            it("下端点が3、上端点が8の時、整数8は閉区間に含まれる", () => {
-                const integerClosedRange = new IntegerClosedRange(3, 8);
+            describe("整数が両端点と等しい時", () => {
+                it("両端点が5の時、整数5は閉区間に含まれる", () => {
+                    const integerClosedRange = new IntegerClosedRange(5, 5);
 
-                expect(integerClosedRange.contains(8)).toBe(true);
+                    expect(integerClosedRange.contains(5)).toBe(true);
+                });
             });
-        });
 
-        describe("整数が上端点より大きく、隣接している時", () => {
-            it("下端点が3、上端点が8の時、整数9は閉区間に含まれない", () => {
-                const integerClosedRange = new IntegerClosedRange(3, 8);
+            describe("整数が両端点より大きく、隣接している時", () => {
+                it("両端点が5の時、整数6は閉区間に含まれる", () => {
+                    const integerClosedRange = new IntegerClosedRange(5, 5);
 
-                expect(integerClosedRange.contains(9)).toBe(false);
+                    expect(integerClosedRange.contains(6)).toBe(false);
+                });
             });
         });
     });
