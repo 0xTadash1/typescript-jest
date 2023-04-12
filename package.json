@@ -24,7 +24,6 @@
         "fmt": "prettier --write *.ts lib/*.ts",
         "fmt:check": "prettier --check *.ts lib/*.ts",
         "lint": "eslint main.ts lib/*.ts",
-        "pretest": "npm run fmt:check && npm run lint",
         "test": "ts-node node_modules/jest/bin/jest.js",
         "watch": "npm run test -- --watch"
     },
