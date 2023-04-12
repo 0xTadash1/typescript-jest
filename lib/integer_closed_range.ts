@@ -7,7 +7,7 @@ export class IntegerClosedRange {
         this.upper = upper;
     }
 
-  toString(): string {
-      return `[${this.lower}, ${this.upper}]`
+    toString(): string {
+        return `[${this.lower}, ${this.upper}]`;
     }
 }
