@@ -28,4 +28,14 @@ export class IntegerClosedRange {
 
         return false;
     }
+
+    equals(integerClosedRange: IntegerClosedRange): boolean {
+        if (
+            this.lower === integerClosedRange.lower &&
+            this.upper === integerClosedRange.upper
+        ) {
+            return true;
+        }
+        return false;
+    }
 }

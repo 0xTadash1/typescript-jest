@@ -105,4 +105,65 @@ describe("整数閉区間オブジェクトのテスト", () => {
             });
         });
     });
+
+    describe("別の閉区間と等価かどうか判定する", () => {
+        describe("下端点より上端点が大きい時", () => {
+            it.each([
+                {
+                    instance: new IntegerClosedRange(3, 8),
+                    compareTo: new IntegerClosedRange(2, 8),
+                    expected: false,
+                },
+                {
+                    instance: new IntegerClosedRange(3, 8),
+                    compareTo: new IntegerClosedRange(3, 8),
+                    expected: true,
+                },
+                {
+                    instance: new IntegerClosedRange(3, 8),
+                    compareTo: new IntegerClosedRange(4, 7),
+                    expected: false,
+                },
+                {
+                    instance: new IntegerClosedRange(3, 8),
+                    compareTo: new IntegerClosedRange(3, 9),
+                    expected: false,
+                },
+            ])(
+                "閉区間[$instance.lower, $instance.upper]と閉区間[$compareTo.lower, $compareTo.upper]を比較し、$expectedを返す",
+                ({ instance, compareTo, expected }) => {
+                    expect(instance.equals(compareTo)).toBe(expected);
+                }
+            );
+        });
+        describe("下端点と上端点が等しい時", () => {
+            it.each([
+                {
+                    instance: new IntegerClosedRange(3, 3),
+                    compareTo: new IntegerClosedRange(2, 3),
+                    expected: false,
+                },
+                {
+                    instance: new IntegerClosedRange(3, 3),
+                    compareTo: new IntegerClosedRange(3, 3),
+                    expected: true,
+                },
+                {
+                    instance: new IntegerClosedRange(3, 3),
+                    compareTo: new IntegerClosedRange(3, 4),
+                    expected: false,
+                },
+                {
+                    instance: new IntegerClosedRange(3, 3),
+                    compareTo: new IntegerClosedRange(2, 4),
+                    expected: false,
+                },
+            ])(
+                "閉区間[$instance.lower, $instance.upper]と閉区間[$compareTo.lower, $compareTo.upper]を比較し、$expectedを返す",
+                ({ instance, compareTo, expected }) => {
+                    expect(instance.equals(compareTo)).toBe(expected);
+                }
+            );
+        });
+    });
 });
