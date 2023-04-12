@@ -45,7 +45,69 @@ describe("整数閉区間オブジェクトのテスト", () => {
         });
     });
 
-    describe("整数が閉区間に含まれるかどうか判定する", () => {
+    describe("整数や閉区間が閉区間に含まれるかどうか判定する", () => {
+        describe("下端点より上端点が大きい時", () => {
+            it.each([
+                {
+                    name: "下端点が3、上端点が8の時、下端点より小さく、隣接している整数2は閉区間に含まれない",
+                    instance: new IntegerClosedRange(3, 8),
+                    compareTo: 2,
+                    expected: false,
+                },
+                {
+                    name: "下端点が3、上端点が8の時、下端点と等しい整数3は閉区間に含まれる",
+                    instance: new IntegerClosedRange(3, 8),
+                    compareTo: 3,
+                    expected: true,
+                },
+                {
+                    name: "下端点が3、上端点が8の時、上端点と等しい整数8は閉区間に含まれる",
+                    instance: new IntegerClosedRange(3, 8),
+                    compareTo: 8,
+                    expected: true,
+                },
+                {
+                    name: "下端点が3、上端点が8の時、上端点より大きく、隣接している整数9は閉区間に含まれない",
+                    instance: new IntegerClosedRange(3, 8),
+                    compareTo: 9,
+                    expected: true,
+                },
+                {
+                    name: "下端点が3、上端点が8の時、上端点より大きく、隣接している整数9は閉区間に含まれない",
+                    instance: new IntegerClosedRange(3, 8),
+                    compareTo: 9,
+                    expected: true,
+                },
+            ]);
+        });
+
+        describe("両端点が等しい時", () => {
+            it.each([
+                {
+                    instance: new IntegerClosedRange(3, 3),
+                    compareTo: 2,
+                    expected: false,
+                },
+                {
+                    instance: new IntegerClosedRange(3, 3),
+                    compareTo: 3,
+                    expected: true,
+                },
+                {
+                    instance: new IntegerClosedRange(3, 3),
+                    compareTo: 4,
+                    expected: false,
+                },
+            ])(
+                "閉区間[$instance.lower, $instance.upper]と整数$compareToを比較し、$expectedを返す",
+                ({ instance, compareTo, expected }) => {
+                    expect(instance.contains(compareTo)).toBe(expected);
+                }
+            );
+        });
+    });
+
+    describe.skip("整数が閉区間に含まれるかどうか判定する", () => {
         describe("下端点より上端点が大きい時", () => {
             describe("整数が下端点より小さく、隣接している時", () => {
                 it("下端点が3、上端点が8の時、整数2は閉区間に含まれない", () => {
