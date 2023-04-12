@@ -44,4 +44,38 @@ describe("整数閉区間オブジェクトのテスト", () => {
             expect(integerClosedRange.toString()).toBe("[3, 8]");
         });
     });
+
+    describe("整数が閉区間に含まれるかどうか判定する", () => {
+        describe("整数が下端点より小さく、隣接している時", () => {
+            it("下端点が3、上端点が8の時、整数2は閉区間に含まれない", () => {
+                const integerClosedRange = new IntegerClosedRange(3, 8);
+
+                expect(integerClosedRange.contains(2)).toBe(false);
+            });
+        });
+
+        describe("整数が下端点と等しい時", () => {
+            it("下端点が3、上端点が8の時、整数3は閉区間に含まれる", () => {
+                const integerClosedRange = new IntegerClosedRange(3, 8);
+
+                expect(integerClosedRange.contains(3)).toBe(true);
+            });
+        });
+
+        describe("整数が上端点と等しい時", () => {
+            it("下端点が3、上端点が8の時、整数8は閉区間に含まれる", () => {
+                const integerClosedRange = new IntegerClosedRange(3, 8);
+
+                expect(integerClosedRange.contains(8)).toBe(true);
+            });
+        });
+
+        describe("整数が上端点より大きく、隣接している時", () => {
+            it("下端点が3、上端点が8の時、整数9は閉区間に含まれない", () => {
+                const integerClosedRange = new IntegerClosedRange(3, 8);
+
+                expect(integerClosedRange.contains(9)).toBe(false);
+            });
+        });
+    });
 });

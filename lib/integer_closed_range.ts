@@ -20,4 +20,12 @@ export class IntegerClosedRange {
     toString(): string {
         return `[${this.lower}, ${this.upper}]`;
     }
+
+    contains(num: number): boolean {
+        if (this.lower <= num && num <= this.upper) {
+            return true;
+        }
+
+        return false;
+    }
 }
